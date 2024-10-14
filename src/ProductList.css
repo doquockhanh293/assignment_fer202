@@ -1,0 +1,20 @@
+.black-background {
+    background-color: #000;
+    color: #fefefe;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 0%;
+    max-width: max-content;
+    
+    
+
+  }
+  .card-img-top {
+    width: 250px; /* Thiết lập chiều rộng của hình ảnh là 100% của phần tử cha */
+    height: 250px; /* Chiều cao tự động điều chỉnh để giữ tỷ lệ khung hình */
+  }
+  h2{
+    text-align: center;
+  }
+  
+  
