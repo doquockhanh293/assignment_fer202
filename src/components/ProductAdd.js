@@ -1,35 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const ProductAdd = () => {
-  const [newProduct, setNewProduct] = useState({ name: '', description: '', price: '', currentPrice: '' });
+  const [newProduct, setNewProduct] = useState({
+    name: "",
+    description: "",
+    price: "",
+    currentPrice: "",
+  });
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
 
-  const handleInputChange = event => {
+  const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setNewProduct(prevProduct => ({
+    setNewProduct((prevProduct) => ({
       ...prevProduct,
-      [name]: value
+      [name]: value,
     }));
   };
 
-  const handleSubmit = async event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch('http://localhost:3001/products', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newProduct),
-      });
+      const response = await fetch(
+        "https://assignment-fer202.onrender.com/products",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newProduct),
+        }
+      );
       if (!response.ok) {
-        throw new Error('Failed to add product');
+        throw new Error("Failed to add product");
       }
       const data = await response.json();
-      console.log('Product added:', data);
+      console.log("Product added:", data);
       setSuccess(true);
-      setNewProduct({ name: '', description: '', price: '', currentPrice: '' });
+      setNewProduct({ name: "", description: "", price: "", currentPrice: "" });
     } catch (error) {
       setError(error.message);
     }
@@ -89,7 +97,9 @@ const ProductAdd = () => {
             required
           />
         </div>
-        <button type="submit" className="btn btn-primary">Add Product</button>
+        <button type="submit" className="btn btn-primary">
+          Add Product
+        </button>
       </form>
     </div>
   );
