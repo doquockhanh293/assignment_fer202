@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios"; // Import Axios
 
 const ProductAdd = () => {
   const [newProduct, setNewProduct] = useState({
@@ -21,30 +22,26 @@ const ProductAdd = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("http://localhost:3001/products", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newProduct),
-      });
-      if (!response.ok) {
-        throw new Error("Failed to add product");
-      }
-      const data = await response.json();
-      console.log("Product added:", data);
+      const response = await axios.post(
+        "http://localhost:3001/products",
+        newProduct
+      ); // Thay đổi từ api.example.com
+
+      console.log("Product added:", response.data);
       setSuccess(true);
       setNewProduct({ name: "", description: "", price: "", currentPrice: "" });
+      setError(null); // Reset error state
     } catch (error) {
-      setError(error.message);
+      setError(error.response ? error.response.data : "Failed to add product"); // Handle error response
+      setSuccess(false); // Reset success state
     }
   };
 
   return (
     <div className="container">
       <h2>Add Product</h2>
-      {error && <p>Error: {error}</p>}
-      {success && <p>Product added successfully!</p>}
+      {error && <p className="text-danger">Error: {error}</p>}
+      {success && <p className="text-success">Product added successfully!</p>}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="name">Product Name</label>

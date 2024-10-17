@@ -9,19 +9,18 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001; // Đã thay đổi cổng từ 3000 sang 3001
 
 // Middleware
-app.use(cors()); // Cho phép tất cả các miền
+app.use(
+  cors({
+    origin: "http://localhost:3001/products", // Base URL of your frontend application
+    methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods
+    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+  })
+);
 app.use(express.json()); // Parse JSON data
 
-const corsOptions = {
-  origin: "http://localhost:3001/products", // Địa chỉ của frontend của bạn
-  methods: ["GET", "POST", "PUT", "DELETE"], // Các phương thức mà bạn cho phép
-  credentials: true, // Cho phép cookie nếu cần
-};
-
-app.use(cors(corsOptions));
 // Connect to MongoDB
 mongoose
   .connect(process.env.MONGO_URI, {
@@ -33,14 +32,6 @@ mongoose
 
 // Routes for products
 app.use("/api/products", require("./routes/products"));
-
-// Ví dụ về route cho sản phẩm
-app.get("/products", (req, res) => {
-  res.json([
-    { id: 1, name: "Product 1" },
-    { id: 2, name: "Product 2" },
-  ]);
-});
 
 // Stripe payment route
 app.post("/create-payment-intent", async (req, res) => {
