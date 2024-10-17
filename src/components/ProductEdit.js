@@ -14,9 +14,7 @@ const ProductEdit = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(
-          `https://assignment-fer202.onrender.com/products/${id}`
-        );
+        const response = await fetch(`http://localhost:3001/products/${id}`);
         if (!response.ok) {
           throw new Error("Unable to fetch product");
         }
@@ -40,16 +38,13 @@ const ProductEdit = () => {
 
   const handleSave = async () => {
     try {
-      const response = await fetch(
-        `https://assignment-fer202.onrender.com/products/${id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(product),
-        }
-      );
+      const response = await fetch(`http://localhost:3001/products/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(product),
+      });
       if (!response.ok) {
         throw new Error("Failed to update product");
       }

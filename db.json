@@ -1,14 +1,6 @@
 {
   "products": [
     {
-      "id": "2",
-      "name": "Laptop ACER Aspire 3 A315-59-51Xx",
-      "description": "Intel Core i5-1235U, Ram 8GB, SSD 512GB, màn hình 15.6 inch FHD, Win 11 bản quyền, màu bạc, chính hãng ",
-      "price": "17.990.000",
-      "currentPrice": "12.990.000",
-      "image": "/data/images/laptop2.jpg"
-    },
-    {
       "id": "3",
       "name": "Laptop Dell Vostro 5630 i5P085W11GRU",
       "description": "Intel i5-1340P, Ram 8GB DDR5, SSD 512GB, Màn Hình 16 Inch FHD+, VGA Intel Iris Xe, Windows 11 Home, Office HS 2021 bản quyền, vỏ nhôm",
@@ -67,10 +59,16 @@
     {
       "id": "c2af",
       "name": "Legion LOQ",
-      "description": "i5 RAM8GB",
+      "description": "i5 RAM8GB 512GB",
       "price": "2200000",
       "currentPrice": "2000000"
-      
+    },
+    {
+      "id": "72fa",
+      "name": "thu",
+      "description": "rtyuio90",
+      "price": "12357",
+      "currentPrice": "10000"
     }
   ]
 }

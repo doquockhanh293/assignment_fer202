@@ -21,16 +21,13 @@ const ProductAdd = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch(
-        "https://assignment-fer202.onrender.com/products",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newProduct),
-        }
-      );
+      const response = await fetch("http://localhost:3001/products", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newProduct),
+      });
       if (!response.ok) {
         throw new Error("Failed to add product");
       }

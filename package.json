@@ -9,10 +9,15 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.3.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "mongoose": "^8.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3",
     "react-scripts": "5.0.1",
+    "stripe": "^17.2.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -21,7 +26,8 @@
     "eject": "react-scripts eject",
     "start": "concurrently \"npm run server\" \"npm run react\"",
     "react": "react-scripts start",
-    "server": "json-server --watch db.json --port 3001"
+    "server": "json-server --watch db.json --port 3001",
+    "proxy": "https://assignment-fer202.onrender.com"
   },
   "eslintConfig": {
     "extends": [
@@ -42,6 +48,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "concurrently": "^8.2.2"
   }
 }

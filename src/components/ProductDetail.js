@@ -9,9 +9,7 @@ const ProductDetail = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(
-          `https://assignment-fer202.onrender.com/products/${id}`
-        );
+        const response = await fetch(`http://localhost:3001/products/${id}`);
         if (!response.ok) {
           throw new Error("Unable to fetch product");
         }

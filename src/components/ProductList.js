@@ -13,23 +13,27 @@ const ProductList = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch(
-        "https://assignment-fer202.onrender.com/products"
-      );
+      // Thay đổi URL để sử dụng CORS proxy
+      const response = await fetch("http://localhost:3001/products");
+
+      // Kiểm tra xem response có ok không
       if (!response.ok) {
-        throw new Error("Unable to fetch products");
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
+
       const data = await response.json();
+      console.log(data); // Ghi dữ liệu ra console để kiểm tra
       setProducts(data);
     } catch (error) {
-      setError(error.message);
+      setError("Không thể lấy danh sách sản phẩm. Vui lòng thử lại sau.");
+      console.error("Error fetching products:", error); // Ghi lỗi ra console
     }
   };
 
   return (
     <div className="container-fluid black-background">
       <h2 className="my-4">Product List</h2>
-      {error && <p>Error: {error}</p>}
+      {error && <p>Error: {error}</p>} {/* Hiển thị lỗi nếu có */}
       <div className="row mt-4">
         {products.map((product) => (
           <div key={product.id} className="col-md-3 mb-4">
