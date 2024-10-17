@@ -16,8 +16,7 @@ app.use(cors()); // Cho phép tất cả các miền
 app.use(express.json()); // Parse JSON data
 
 const corsOptions = {
-  origin:
-    "mongodb+srv://doquockhanh:doquockhanh@doquockhanh.idqr4.mongodb.net/products", // Địa chỉ của frontend của bạn
+  origin: "http://localhost:3001/products", // Địa chỉ của frontend của bạn
   methods: ["GET", "POST", "PUT", "DELETE"], // Các phương thức mà bạn cho phép
   credentials: true, // Cho phép cookie nếu cần
 };
