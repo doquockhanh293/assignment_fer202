@@ -38,7 +38,7 @@ const ProductEdit = () => {
 
   const handleSave = async () => {
     try {
-      const response = await fetch(`http://localhost:3001/products/${id}`, {
+      const response = await fetch(`http://localhost:3000/products/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
