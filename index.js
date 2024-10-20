@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Product = require("./models/Product");
 const app = express();
 const port = process.env.PORT || 3000;
-
+app.use(cors());
 // Middleware để parse JSON
 app.use(express.json());
 
