@@ -56,6 +56,12 @@ router.post("/", async (req, res) => {
   });
 
   try {
+    const ProductExist = await Product.findOne({ id });
+    if (ProductExist) {
+      return res
+        .status(500)
+        .json("id product was existed, let enter another id");
+    }
     const newProduct = await product.save();
     res.status(201).json(newProduct);
   } catch (error) {
@@ -77,7 +83,7 @@ router.put("/:id", async (req, res) => {
     product.currentPrice = req.body.currentPrice || product.currentPrice;
     product.image = req.body.image || product.image;
 
-    const updatedProduct = await product.save();
+    const updatedProduct = await product.updateOne();
     res.json(updatedProduct);
   } catch (error) {
     res.status(400).json({ message: error.message });
