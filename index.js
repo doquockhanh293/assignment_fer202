@@ -33,6 +33,16 @@ router.get("/", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+// Lấy danh sách sản phẩm
+router.get("/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const products = await Product.findOne({ id });
+    res.json(products);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
 // Thêm sản phẩm mới
 router.post("/", async (req, res) => {
