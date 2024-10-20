@@ -56,7 +56,7 @@ router.post("/", async (req, res) => {
   });
 
   try {
-    const ProductExist = await Product.findOne({ id });
+    const ProductExist = await Product.findOne({ id: req.body.id });
     if (ProductExist) {
       return res
         .status(500)
