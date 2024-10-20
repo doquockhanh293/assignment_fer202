@@ -72,18 +72,21 @@ router.post("/", async (req, res) => {
 // Cập nhật sản phẩm
 router.put("/:id", async (req, res) => {
   try {
+    // Tìm kiếm sản phẩm dựa trên id
     const product = await Product.findOne({ id: req.params.id });
 
+    // Nếu không tìm thấy sản phẩm
     if (!product) return res.status(404).json({ message: "Product not found" });
 
-    product.id = req.body.id || product.id;
+    // Chỉ cập nhật các thuộc tính khác, không thay đổi id
     product.name = req.body.name || product.name;
     product.description = req.body.description || product.description;
     product.price = req.body.price || product.price;
     product.currentPrice = req.body.currentPrice || product.currentPrice;
     product.image = req.body.image || product.image;
 
-    const updatedProduct = await product.updateOne();
+    // Lưu lại sản phẩm sau khi cập nhật
+    const updatedProduct = await product.save();
     res.json(updatedProduct);
   } catch (error) {
     res.status(400).json({ message: error.message });
